@@ -1,0 +1,472 @@
+/*
+    =========================================
+    오늘의 루틴 연구소 메인 페이지 스타일시트
+    =========================================
+    이 파일은 페이지의 전체 디자인을 담당한다.
+    과제 요구사항에 맞게 다음 내용을 포함한다.
+    1) 메뉴와 페이지 디자인 업그레이드
+    2) 메인 레이아웃 정리
+    3) 로그인/회원가입 폼 가독성 향상
+    4) 사이드바 광고와 고객지원 영역 시각화
+    5) 반응형 레이아웃 적용
+*/
+
+/* 기본 초기화 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #6c4df6;
+    --sub-color: #8b7bff;
+    --bg-color: #f6f7fb;
+    --card-color: #ffffff;
+    --text-color: #222222;
+    --sub-text: #666666;
+    --border-color: #dddddd;
+    --error-color: #e53935;
+    --success-color: #1b8a3f;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* 다크모드가 켜졌을 때 적용되는 색상 */
+body.dark-mode {
+    --bg-color: #151821;
+    --card-color: #232938;
+    --text-color: #f3f4f8;
+    --sub-text: #c2c7d3;
+    --border-color: #42495d;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+body {
+    font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* 상단 헤더 스타일 */
+.site-header {
+    background: linear-gradient(135deg, var(--main-color), var(--sub-color));
+    color: white;
+    padding: 28px 20px;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.site-header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.header-subtitle {
+    font-size: 0.98rem;
+    opacity: 0.95;
+}
+
+/* 다크모드 전환 버튼 */
+.theme-btn {
+    background-color: rgba(255, 255, 255, 0.18);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.theme-btn:hover {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+/* 검색 영역 */
+.search-section {
+    max-width: 1200px;
+    margin: 24px auto 14px;
+    padding: 0 20px;
+}
+
+.search-box {
+    background-color: var(--card-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-box label {
+    font-weight: bold;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 220px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--card-color);
+    color: var(--text-color);
+}
+
+.search-box button {
+    padding: 12px 16px;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-result {
+    margin-top: 10px;
+    color: var(--sub-text);
+}
+
+/* 내비게이션 메뉴 */
+.main-nav {
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    padding: 0 20px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    background-color: var(--card-color);
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 10px 14px;
+    border-radius: 10px;
+    transition: 0.2s ease;
+}
+
+.main-nav a:hover {
+    background-color: var(--main-color);
+    color: white;
+}
+
+/* 메인 + 사이드바 2단 레이아웃 */
+.page-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 30px;
+    display: grid;
+    grid-template-columns: 2.4fr 1fr;
+    gap: 24px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* 공통 카드 스타일 */
+.card {
+    background-color: var(--card-color);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+.section-card h2 {
+    margin-bottom: 10px;
+    color: var(--main-color);
+}
+
+.section-desc {
+    color: var(--sub-text);
+    margin-bottom: 18px;
+}
+
+/* 폼 공통 스타일 */
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+
+.form-row label {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.form-row input,
+.form-row select {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 0.96rem;
+    background-color: var(--card-color);
+    color: var(--text-color);
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.planner-input-wrap input:focus {
+    outline: none;
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 3px rgba(108, 77, 246, 0.16);
+}
+
+.checkbox-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-row input,
+.robot-box input {
+    width: 18px;
+    height: 18px;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    min-height: 18px;
+    margin-top: 4px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.primary-btn,
+.secondary-btn,
+.done-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.primary-btn {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.secondary-btn {
+    background-color: #e7e9f7;
+    color: #333;
+}
+
+.done-btn {
+    background-color: #daf3df;
+    color: var(--success-color);
+}
+
+.primary-btn:hover,
+.search-box button:hover {
+    filter: brightness(1.06);
+}
+
+/* 로봇 확인 박스 */
+.robot-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+    background-color: rgba(108, 77, 246, 0.04);
+}
+
+/* 루틴 플래너 스타일 */
+.planner-input-wrap {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.planner-input-wrap input {
+    flex: 1;
+    min-width: 220px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--card-color);
+    color: var(--text-color);
+}
+
+.todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.todo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.todo-list li.completed span {
+    text-decoration: line-through;
+    color: var(--sub-text);
+}
+
+.todo-status {
+    margin-top: 14px;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+/* 고객지원 및 FAQ */
+.support-box {
+    margin-bottom: 18px;
+    color: var(--text-color);
+}
+
+.faq-item {
+    border-top: 1px solid var(--border-color);
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 15px 0;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.faq-answer {
+    display: none;
+    padding-bottom: 16px;
+    color: var(--sub-text);
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* 사이드바 광고 디자인 */
+.ad-card h3,
+.quick-menu-card h3 {
+    color: var(--main-color);
+    margin-bottom: 14px;
+}
+
+.ad-banner {
+    background: linear-gradient(135deg, #6c4df6, #9c8cff);
+    color: white;
+    border-radius: 14px;
+    padding: 24px 18px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.ad-banner.alt {
+    background: linear-gradient(135deg, #ff7b86, #ffb36b);
+}
+
+.quick-menu-card ul {
+    list-style: none;
+}
+
+.quick-menu-card li {
+    margin-bottom: 10px;
+}
+
+.quick-menu-card a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.quick-menu-card a:hover {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+/* 푸터 */
+.site-footer {
+    text-align: center;
+    padding: 22px;
+    color: var(--sub-text);
+}
+
+/* 유효성 검사 시 입력창 강조용 클래스 */
+.input-error {
+    border-color: var(--error-color) !important;
+    background-color: rgba(229, 57, 53, 0.05);
+}
+
+.input-success {
+    border-color: var(--success-color) !important;
+}
+
+/* 반응형 처리 */
+@media (max-width: 900px) {
+    .page-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .search-box,
+    .main-nav ul,
+    .card {
+        padding: 16px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .todo-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

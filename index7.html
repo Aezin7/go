@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 루틴 연구소 | 메인 페이지</title>
+
+    <!-- 
+        외부 CSS 파일 연결
+        - 페이지 전체 색상, 배치, 버튼, 폼, 반응형 레이아웃을 담당한다.
+        - index.html과 style.css는 반드시 같은 폴더에 두어야 한다.
+    -->
+    <link rel="stylesheet" href="style7.css">
+</head>
+<body>
+    <!-- 
+        =========================
+        1. 상단 헤더 영역
+        =========================
+        - 사이트 제목과 간단한 설명을 보여주는 영역
+        - 사용자가 사이트의 주제와 용도를 바로 이해할 수 있도록 구성
+    -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div>
+                <h1>오늘의 루틴 연구소</h1>
+                <p class="header-subtitle">나의 공부, 생활, 목표 관리를 기록하고 공유하는 개인 라이프스타일 웹페이지</p>
+            </div>
+            <button id="themeToggle" class="theme-btn" type="button">다크모드 전환</button>
+        </div>
+    </header>
+
+    <!-- 
+        =========================
+        2. 검색 영역
+        =========================
+        - 사용자가 원하는 메뉴나 콘텐츠를 빠르게 찾을 수 있도록 만든 영역
+        - JavaScript를 이용해 입력한 키워드와 관련된 섹션으로 이동하거나 안내 메시지를 제공한다.
+    -->
+    <section class="search-section">
+        <div class="search-box">
+            <label for="searchInput">검색</label>
+            <input type="text" id="searchInput" placeholder="예: 회원가입, 로그인, 고객지원, 루틴 소개">
+            <button id="searchBtn" type="button">검색하기</button>
+        </div>
+        <p id="searchResult" class="search-result">원하는 메뉴 이름을 입력하면 관련 영역을 안내해줘요.</p>
+    </section>
+
+    <!-- 
+        =========================
+        3. 내비게이션 영역
+        =========================
+        - 메인 페이지의 필수 메뉴들을 한눈에 볼 수 있게 구성
+        - 각 링크를 누르면 해당 섹션으로 이동한다.
+    -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#intro">사이트 소개</a></li>
+            <li><a href="#signup">회원가입</a></li>
+            <li><a href="#login">로그인</a></li>
+            <li><a href="#plan">루틴 플래너</a></li>
+            <li><a href="#support">고객지원</a></li>
+        </ul>
+    </nav>
+
+    <!-- 
+        =========================
+        4. 메인 레이아웃 시작
+        =========================
+        - 왼쪽에는 주요 콘텐츠
+        - 오른쪽에는 광고 및 공지용 사이드바를 배치
+    -->
+    <div class="page-layout">
+        <main class="main-content">
+
+            <!-- 
+                =========================
+                5. 사이트 소개 영역
+                =========================
+                - 웹페이지의 주제와 용도를 설명하는 핵심 영역
+                - 과제의 1번 항목인 '주제 및 용도 결정'을 반영
+            -->
+            <section id="intro" class="card section-card">
+                <h2>사이트 소개</h2>
+                <p>
+                    이 웹페이지의 주제는 <strong>개인 루틴 관리와 자기소개</strong>이다.
+                    사용자는 이 페이지에서 나의 생활 습관, 공부 계획, 목표, 관심사를 살펴볼 수 있으며,
+                    회원가입과 로그인을 통해 개인 정보를 입력하고 간단한 루틴 플래너 기능도 사용할 수 있다.
+                </p>
+                <p>
+                    즉, 단순한 소개 페이지가 아니라 <strong>회원 기능 + 정보 탐색 + 동적 기능</strong>이 포함된 메인 페이지로 설계하였다.
+                </p>
+            </section>
+
+            <!-- 
+                =========================
+                6. 회원가입 영역
+                =========================
+                - 사용자가 기존에 작성한 회원가입 코드를 최대한 메인 페이지 안에 연결한다는 목적의 영역
+                - 필수 입력, 글자 수, 이메일 형식, 비밀번호 확인 검사를 JavaScript로 수행
+            -->
+            <section id="signup" class="card section-card">
+                <h2>회원가입</h2>
+                <p class="section-desc">기존 회원가입 폼을 메인 페이지 안에 연결한 영역입니다. 모든 필수 항목은 유효성 검사를 통과해야 제출됩니다.</p>
+
+                <form id="signupForm" novalidate>
+                    <div class="form-row">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" placeholder="2자 이상 입력">
+                        <small class="error-message" id="nameError"></small>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="userid">아이디</label>
+                        <input type="text" id="userid" name="userid" placeholder="영문/숫자 4~12자">
+                        <small class="error-message" id="useridError"></small>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="email">이메일</label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com">
+                        <small class="error-message" id="emailError"></small>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="password">비밀번호</label>
+                        <input type="password" id="password" name="password" placeholder="영문, 숫자 포함 8자 이상">
+                        <small class="error-message" id="passwordError"></small>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="confirmPassword">비밀번호 확인</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 한 번 더 입력">
+                        <small class="error-message" id="confirmPasswordError"></small>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="phone">전화번호</label>
+                        <input type="text" id="phone" name="phone" placeholder="010-1234-5678">
+                        <small class="error-message" id="phoneError"></small>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="interest">관심 분야</label>
+                        <select id="interest" name="interest">
+                            <option value="">선택하세요</option>
+                            <option value="study">공부 루틴</option>
+                            <option value="fitness">운동 루틴</option>
+                            <option value="reading">독서 루틴</option>
+                            <option value="daily">일상 기록</option>
+                        </select>
+                        <small class="error-message" id="interestError"></small>
+                    </div>
+
+                    <div class="form-row checkbox-row">
+                        <input type="checkbox" id="agree" name="agree">
+                        <label for="agree">개인정보 수집 및 이용에 동의합니다.</label>
+                    </div>
+                    <small class="error-message" id="agreeError"></small>
+
+                    <div class="button-group">
+                        <button type="submit" class="primary-btn">회원가입 완료</button>
+                        <button type="reset" class="secondary-btn">다시 작성</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 
+                =========================
+                7. 로그인 영역
+                =========================
+                - 로그인 입력값 검사 수행
+                - '로봇이 아닙니다' 체크박스를 반드시 선택해야 로그인 가능
+                - 과제의 필수 구성 요소를 반영
+            -->
+            <section id="login" class="card section-card">
+                <h2>로그인</h2>
+                <p class="section-desc">아이디, 비밀번호, 로봇 확인 체크를 모두 통과해야 로그인할 수 있습니다.</p>
+
+                <form id="loginForm" novalidate>
+                    <div class="form-row">
+                        <label for="loginId">아이디</label>
+                        <input type="text" id="loginId" name="loginId" placeholder="가입한 아이디 입력">
+                        <small class="error-message" id="loginIdError"></small>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="loginPassword">비밀번호</label>
+                        <input type="password" id="loginPassword" name="loginPassword" placeholder="비밀번호 입력">
+                        <small class="error-message" id="loginPasswordError"></small>
+                    </div>
+
+                    <div class="robot-box">
+                        <input type="checkbox" id="robotCheck" name="robotCheck">
+                        <label for="robotCheck">로봇이 아닙니다</label>
+                    </div>
+                    <small class="error-message" id="robotCheckError"></small>
+
+                    <div class="button-group">
+                        <button type="submit" class="primary-btn">로그인</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 
+                =========================
+                8. 추가 메뉴: 루틴 플래너
+                =========================
+                - 과제 조건 중 '주제에 맞는 메뉴 추가'를 반영한 부분
+                - 체크리스트 형태로 작성하여 JavaScript를 이용한 동적 기능을 체험할 수 있게 함
+                - 사용자가 할 일을 추가하고 완료 개수를 실시간으로 확인할 수 있음
+            -->
+            <section id="plan" class="card section-card">
+                <h2>오늘의 루틴 플래너</h2>
+                <p class="section-desc">나의 주제에 맞게 추가한 메뉴입니다. 오늘 해야 할 일이나 목표를 직접 추가해볼 수 있습니다.</p>
+
+                <div class="planner-input-wrap">
+                    <input type="text" id="todoInput" placeholder="예: 자료구조 복습 1시간">
+                    <button id="addTodoBtn" type="button" class="primary-btn">추가</button>
+                </div>
+
+                <ul id="todoList" class="todo-list">
+                    <li>
+                        <span>아침 계획 세우기</span>
+                        <button class="done-btn" type="button">완료</button>
+                    </li>
+                    <li>
+                        <span>전공 공부 2시간</span>
+                        <button class="done-btn" type="button">완료</button>
+                    </li>
+                </ul>
+
+                <p id="todoStatus" class="todo-status">현재 완료한 루틴: 0개</p>
+            </section>
+
+            <!-- 
+                =========================
+                9. 고객지원 영역
+                =========================
+                - 사용자가 문의 방법, 운영 시간, 자주 묻는 질문을 확인할 수 있는 영역
+                - 아코디언 형식의 FAQ는 JavaScript로 열고 닫히도록 구성
+            -->
+            <section id="support" class="card section-card">
+                <h2>고객지원</h2>
+                <div class="support-box">
+                    <p><strong>운영 시간:</strong> 평일 09:00 ~ 18:00</p>
+                    <p><strong>이메일 문의:</strong> support@routinepage.com</p>
+                    <p><strong>전화 문의:</strong> 02-123-4567</p>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">Q1. 회원가입 시 어떤 정보를 입력해야 하나요?</button>
+                    <div class="faq-answer">
+                        <p>이름, 아이디, 이메일, 비밀번호, 전화번호, 관심 분야와 같은 기본 정보를 입력하면 됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">Q2. 로그인할 때 로봇 체크가 왜 필요한가요?</button>
+                    <div class="faq-answer">
+                        <p>자동 로그인 시도를 줄이고, 실제 사용자인지 확인하기 위한 간단한 보안 기능입니다.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 
+            =========================
+            10. 사이드바 광고 영역
+            =========================
+            - 과제에서 요구한 광고(side bar) 기능을 반영
+            - 실제 배너 광고처럼 보이도록 박스 형태로 구성
+            - 공지나 이벤트 안내 영역으로도 활용 가능
+        -->
+        <aside class="sidebar">
+            <section class="card ad-card">
+                <h3>사이드 광고</h3>
+                <div class="ad-banner">오늘의 집중 챌린지<br>3일 연속 루틴 달성하기</div>
+                <div class="ad-banner alt">신규 가입 이벤트<br>루틴 템플릿 무료 제공</div>
+            </section>
+
+            <section class="card quick-menu-card">
+                <h3>빠른 메뉴</h3>
+                <ul>
+                    <li><a href="#signup">회원가입 바로가기</a></li>
+                    <li><a href="#login">로그인 바로가기</a></li>
+                    <li><a href="#support">문의하러 가기</a></li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+
+    <!-- 
+        =========================
+        11. 하단 푸터 영역
+        =========================
+        - 페이지 마무리 정보 표시
+        - 제작 주제와 용도를 다시 간단하게 정리하는 역할 수행
+    -->
+    <footer class="site-footer">
+        <p>© 2026 오늘의 루틴 연구소 | 개인 루틴 관리와 자기소개를 위한 웹페이지</p>
+    </footer>
+
+    <!-- 
+        외부 JavaScript 파일 연결
+        - 유효성 검사
+        - 검색 기능
+        - 다크모드 전환
+        - 루틴 플래너 추가/완료 기능
+        - FAQ 열기/닫기 기능 등을 담당
+    -->
+    <script src="script7.js"></script>
+</body>
+</html>
